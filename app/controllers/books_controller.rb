@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 
-  before_action :authenticate_user, only: [:create, :new, :show]
+  before_action :authenticate_user, only: [:create, :new]
   before_action :set_user
 
   def index

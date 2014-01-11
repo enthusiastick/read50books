@@ -1,4 +1,14 @@
-<h1><%= @book.title %></h1>
-<h3>by <%= @book.author %></h3>
-<h5>Completed On: <%= @book.date_completed.to_date %></h5>
-<p><%= button_to 'Back To Your List', user_path(current_user), method: :get, class: "button" %></p>
+<%- if user_signed_in? -%>
+
+  <h1><%= @book.title %></h1>
+  <h3>by <%= @book.author %></h3>
+  <h5>Completed On: <%= @book.date_completed.to_date %></h5>
+  <p><%= button_to 'Back To Your List', user_path(current_user), method: :get, class: "button" %></p>
+
+<%- else -%>
+
+ <div class="panel radius">
+    <h4>You must be <%= link_to 'signed in', new_user_session_path %> to view this content.</h4>
+  </div>
+
+<%- end -%>
