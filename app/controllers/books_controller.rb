@@ -22,7 +22,12 @@ class BooksController < ApplicationController
   def new
     search = BookSearch.new(params[:q])
     @results_collection = search.perform
-    @book = Book.new
+    if @results_collection == nil
+      flash.now['alert-box alert'] = 'Unable to send message. Please retry.'
+      redirect_to user_path(@user)
+    else
+      @book = Book.new
+    end
   end
 
   def show
