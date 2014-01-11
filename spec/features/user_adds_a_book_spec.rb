@@ -39,13 +39,8 @@ feature "User adds a book", %Q{
     expect(Book.all.count).to eq(count)
   end
 
-  # end
-
-  # context "not logged in" do
-  #   it "won't authorize you" do
-  #     expect { visit new_game_path }.to raise_error(ActionController::RoutingError, "Not Found")
-  #   end
-
-  # end
+  scenario "not logged in" do
+    expect { visit new_book_path }.to raise_error(ActionController::RoutingError, "Not Found")
+  end
 
 end

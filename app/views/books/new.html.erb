@@ -3,7 +3,10 @@
   <%= simple_form_for @book do |f| %>
     <%= f.input :title %>
     <%= f.input :author %>
-    <%= f.input :date_completed %>
+    <div>
+      <%= f.label 'Date Completed' %>
+      <%= f.date_select :date_completed %>
+    </div>
     <%= f.submit 'Add Book' %>
   <% end %>
 
