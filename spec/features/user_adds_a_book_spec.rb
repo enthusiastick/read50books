@@ -27,17 +27,17 @@ feature "User adds a book", %Q{
     expect(Book.last.user_id).to eq(user.id)
   end
 
-  # context "with invalid input" do
-  #   it "throws an error" do
-  #     count = Game.all.count
-  #     user = FactoryGirl.create(:user)
-  #     login(user)
-  #     visit new_game_path
-  #     click_on "Create Game"
+  scenario "missing input" do
+    count = Book.all.count
+    user = FactoryGirl.create(:user)
+    login(user)
+    visit '/'
+    2.times do click_on "Add Book"
+    end
 
-  #     expect(page).to have_content("Error")
-  #     expect(Game.all.count).to eq(count)
-  #   end
+    expect(page).to have_content("Error")
+    expect(Book.all.count).to eq(count)
+  end
 
   # end
 
