@@ -1,8 +1,8 @@
-<%- unless @user.books == nil -%>
+<%- unless @books == nil -%>
   <table width=100%>
     <tbody>
       <%- counter = 0 -%>
-      <%- @user.books.each do |book| -%>
+      <%- @books.each do |book| -%>
       <%- counter +=1 -%>
         <tr><td><%= counter %></td><td><%= book.title %></td></tr>
       <%- end -%>
