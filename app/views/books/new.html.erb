@@ -1,6 +1,6 @@
 <%- if user_signed_in? -%>
 
-  <%= simple_form_for @book do |f| %>
+  <%= simple_form_for [current_user, @book] do |f| %>
     <%= f.input :title %>
     <%= f.input :author %>
     <div>

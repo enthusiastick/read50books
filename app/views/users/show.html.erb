@@ -1,0 +1,11 @@
+<%- if user_signed_in? -%>
+
+  <%- unless current_user.books == nil -%>
+    <%- current_user.books.each do |book| -%>
+      <p><%= book.title %></p>
+    <%- end -%>
+  <%- end -%>
+
+  <div><%= button_to 'Add Book', new_user_book_path(current_user), method: :get %></div>
+
+<%- end -%>
