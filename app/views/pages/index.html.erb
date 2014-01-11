@@ -6,6 +6,6 @@
 
 <%- if user_signed_in? -%>
 
-<div><%= button_to 'Add Book', new_user_book_path(current_user), method: :get, class: 'button' %></div>
+<div><%= button_to 'Add Book', user_books_path(current_user), method: :get, class: 'button' %></div>
 
 <%- end -%>

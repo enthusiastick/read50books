@@ -5,10 +5,10 @@ class BookSearch
   end
 
   def perform
-    @results = Array.new
+    @results = Hash.new
     raw = client.search_books(@search_string).results.work
     raw.each do |result|
-      @results << result['best_book']['title']
+      @results[result['best_book']['title']] = result['best_book']['author']['name']
     end
     @results
   end

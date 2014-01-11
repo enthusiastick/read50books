@@ -6,6 +6,12 @@
     <%- end -%>
   <%- end -%>
 
-  <div><%= button_to 'Add Book', new_user_book_path(current_user), method: :get, class: 'button' %></div>
+  <%= form_tag(new_user_book_path(current_user), method: "get") do %>
+    <%= label_tag(:q, "Title:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+
+<!--   params[:q] -->
 
 <%- end -%>

@@ -3,6 +3,10 @@ class BooksController < ApplicationController
   before_action :authenticate_user, only: [:new, :create]
   before_action :set_user
 
+  def index
+    @search = Book.new
+  end
+
   def create
     @book = Book.new(book_params)
     @book.user = @user
@@ -16,6 +20,8 @@ class BooksController < ApplicationController
   end
 
   def new
+    search = BookSearch.new(params[:q])
+    @results_collection = search.perform
     @book = Book.new
   end
 

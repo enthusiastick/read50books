@@ -1,8 +1,8 @@
 <%- if user_signed_in? -%>
 
   <%= simple_form_for [current_user, @book] do |f| %>
-    <%= f.input :title %>
-    <%= f.input :author %>
+    <%= f.input :title, collection: @results_collection, as: :radio_buttons %>
+    <%= f.input :author, collection: @results_collection.values %>
     <div>
       <%= f.label 'Date Completed' %>
       <%= f.date_select :date_completed %>
