@@ -18,10 +18,8 @@ describe Book do
     it { should_not have_valid(:date_completed).when(nil, "") }
   end
 
-  # describe "Association Tests" do
-  #   it { should belong_to(:user) }
-  #   it { should have_many(:game_traits) }
-  #   it { should have_many(:characters) }
-  # end
+  describe "Association Tests" do
+    it { should belong_to(:user) }
+  end
 
 end
