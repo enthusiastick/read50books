@@ -7,8 +7,18 @@ class ApplicationController < ActionController::Base
 
     protected
 
+  def authenticate_user
+    unless user_signed_in?
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :username
+  end
+
+  def set_user
+    @user = current_user
   end
 
 end

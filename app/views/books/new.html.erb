@@ -1,0 +1,10 @@
+<%- if user_signed_in? -%>
+
+  <%= simple_form_for @book do |f| %>
+    <%= f.input :title %>
+    <%= f.input :author %>
+    <%= f.input :date_completed %>
+    <%= f.submit 'Add Book' %>
+  <% end %>
+
+<%- end -%>
