@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     @book.user = @user
     if @book.save
       flash['alert-box success'] = "Nice work!"
-      redirect_to book_path(@book)
+      redirect_to user_book_path(@user, @book)
     else
       flash.now['alert-box alert'] = "Error! Please check your input and retry."
       render :new
