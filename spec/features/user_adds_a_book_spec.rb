@@ -40,7 +40,8 @@ feature "User adds a book", %Q{
   end
 
   scenario "not logged in" do
-    expect { visit new_book_path }.to raise_error(ActionController::RoutingError, "Not Found")
+    user = FactoryGirl.create(:user)
+    expect { visit new_user_book_path(user) }.to raise_error(ActionController::RoutingError, "Not Found")
   end
 
 end
