@@ -1,11 +1,4 @@
-<div><%= link_to 'Sign Up', new_user_registration_path %></div>
-
-<div><%= link_to 'Sign In', new_user_session_path %></div>
-
-<div><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></div>
 
 <%- if user_signed_in? -%>
-
-<div><%= button_to 'Add Book', user_path(current_user), method: :get, class: 'button' %></div>
 
 <%- end -%>

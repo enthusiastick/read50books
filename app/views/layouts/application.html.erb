@@ -11,14 +11,37 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <div class="row">
-      <% flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, class: name %>
-      <% end -%>
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1><%= link_to "Read 50 Books", root_path %></h1>
+      </li>
+    </ul>
 
-      <%= yield %>
-      <%= javascript_include_tag "application" %>
+    <section class="top-bar-section">
+      <ul class="right">
+        <li class="active"><%- if user_signed_in? -%><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %><%- else -%><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <li class="right">
+          <%= link_to 'Sign In', new_user_session_path %>
+        </li><%- end -%>
+      </ul>
+       <ul class="left">
+        <li><%- if user_signed_in? -%><%= link_to 'Add Book', user_path(current_user), method: :get, class: 'button' %><%- end -%></li>
+      </ul>
+    </section>
+  </nav>
+
+  <body>
+    <p></p>
+    <div class="row">
+      <div class="small-10 small-centered columns">
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, class: name %>
+        <% end -%>
+
+        <%= yield %>
+        <%= javascript_include_tag "application" %>
+      </div>
     </div>
   </body>
 </html>

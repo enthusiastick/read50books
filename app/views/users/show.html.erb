@@ -1,15 +1,21 @@
 <%- if user_signed_in? -%>
 
   <%- unless current_user.books == nil -%>
-    <%- current_user.books.each do |book| -%>
-      <p><%= book.title %></p>
-    <%- end -%>
+    <table width=100%>
+      <tbody>
+        <%- counter = 0 -%>
+        <%- current_user.books.each do |book| -%>
+        <%- counter +=1 -%>
+          <tr><td><%= counter %></td><td><%= book.title %></td></tr>
+        <%- end -%>
+      </tbody>
+    </table>
   <%- end -%>
 
   <%= form_tag(new_user_book_path(current_user), method: "get") do %>
     <%= label_tag(:q, "Title:") %>
     <%= text_field_tag(:q) %>
-    <%= submit_tag("Search") %>
+    <%= submit_tag "Search", class: "button" %>
   <% end %>
 
 <%- end -%>
