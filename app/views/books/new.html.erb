@@ -1,5 +1,7 @@
 <%- if user_signed_in? -%>
 
+  <p>Search results provided by <%= link_to 'Goodreads', 'http://www.goodreads.com' %>.</p>
+
   <%= simple_form_for [current_user, @book] do |f| %>
     <%= f.input :title, collection: @results_collection.keys, as: :radio_buttons %>
     <%= f.input :author, collection: @results_collection.values %>
