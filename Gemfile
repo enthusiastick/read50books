@@ -36,6 +36,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'mail_form'
 gem 'foundation-rails'
+gem 'goodreads'
 
 group :test, :development do
   gem 'rspec-rails'
