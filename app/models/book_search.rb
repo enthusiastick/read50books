@@ -5,12 +5,16 @@ class BookSearch
   end
 
   def perform
-    @results = Hash.new
+    @results = Array.new
     raw = client.search_books(@search_string).results.work
     raw.each do |result|
-      @results[result['best_book']['title']] = result['best_book']['author']['name']
+      @results << GoodRead.new(result)
     end
     @results
+  end
+
+  def id(id)
+    @id = client.book(id)
   end
 
   protected

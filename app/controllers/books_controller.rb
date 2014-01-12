@@ -9,6 +9,14 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @search = BookSearch.new('')
+    @book_hash = @search.id(@book.goodreads_id)
+    @book.title = @book_hash.title
+    if @book_hash.author == nil
+      @book.author = @book_hash.authors.author.name
+    else
+      @book.author = @book_hash.author
+    end
     @book.user = @user
     if @book.save
       flash['alert-box success'] = "Nice work!"
@@ -23,7 +31,7 @@ class BooksController < ApplicationController
     search = BookSearch.new(params[:q])
     @results_collection = search.perform
     if @results_collection == nil
-      flash.now['alert-box alert'] = 'Unable to send message. Please retry.'
+      flash.now['alert-box alert'] = 'No results returned. Please retry.'
       redirect_to user_path(@user)
     else
       @book = Book.new
@@ -37,7 +45,7 @@ class BooksController < ApplicationController
   protected
 
   def book_params
-    params.require(:book).permit(:author, :title, :date_completed, :user_id)
+    params.require(:book).permit(:author, :title, :date_completed, :user_id, :goodreads_id)
   end
 
 end
