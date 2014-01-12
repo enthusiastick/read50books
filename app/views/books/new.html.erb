@@ -1,13 +1,26 @@
 <%- if user_signed_in? -%>
 
-  <%= simple_form_for [current_user, @book] do |f| %>
-    <%= f.input :goodreads_id, collection: @results_collection, label: 'Select Book' %>
-    <p>Search results provided by <%= link_to 'Goodreads', 'http://www.goodreads.com' %>.</p>
-    <div>
-      <%= f.label 'Date Completed' %>
-      <%= f.date_select :date_completed %>
-    </div>
-    <%= f.button :submit, 'Add Book' %>
-  <% end %>
+  <%- if @results_collection == [] -%>
+    <%= simple_form_for [current_user, @book] do |f| %>
+      <%= f.input :title %>
+      <%= f.input :author %>
+      <div>
+        <%= f.label 'Date Completed' %>
+        <%= f.date_select :date_completed %>
+      </div>
+      <%= f.button :submit, 'Add Book' %>
+    <% end %>
+  <%- else -%>
+    <%= simple_form_for [current_user, @book] do |f| %>
+      <%= f.input :goodreads_id, collection: @results_collection, label: 'Select Book' %>
+      <p>Search results provided by <%= link_to 'Goodreads', 'http://www.goodreads.com' %>.</p>
+      <div>
+        <%= f.label 'Date Completed' %>
+        <%= f.date_select :date_completed %>
+      </div>
+
+      <%= f.button :submit, 'Add Book' %>
+    <% end %>
+  <%- end -%>
 
 <%- end -%>

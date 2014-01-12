@@ -9,13 +9,15 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    @search = BookSearch.new('')
-    @book_hash = @search.id(@book.goodreads_id)
-    @book.title = @book_hash.title
-    if @book_hash.author == nil
-      @book.author = @book_hash.authors.author.name
-    else
-      @book.author = @book_hash.author
+    if @book.title == nil
+      @search = BookSearch.new('')
+      @book_hash = @search.id(@book.goodreads_id)
+      @book.title = @book_hash.title
+      if @book_hash.author == nil
+        @book.author = @book_hash.authors.author.name
+      else
+        @book.author = @book_hash.author
+      end
     end
     @book.user = @user
     if @book.save
@@ -35,19 +37,19 @@ class BooksController < ApplicationController
   def new
     search = BookSearch.new(params[:q])
     @results_collection = search.perform
-    if @results_collection == nil
-      flash.now['alert-box alert'] = 'No results returned. Please retry.'
-      redirect_to user_path(@user)
-    else
-      @book = Book.new
+    if @results_collection == []
+      flash.now['alert-box alert'] = 'No results returned.'
+      # redirect_to user_path(@user)
     end
+      @book = Book.new
   end
 
   def show
     @book = Book.find(params[:id])
-    @search = BookSearch.new('')
-    @book_hash = @search.id(@book.goodreads_id)
-    # binding.pry
+    unless @book.goodreads_id == nil
+      @search = BookSearch.new('')
+      @book_hash = @search.id(@book.goodreads_id)
+    end
   end
 
   protected
