@@ -14,7 +14,11 @@ class BooksController < ApplicationController
       @book_hash = @search.id(@book.goodreads_id)
       @book.title = @book_hash.title
       if @book_hash.author == nil
-        @book.author = @book_hash.authors.author.name
+        if @book_hash.authors.author.kind_of?(Array)
+          @book.author = @book_hash.authors.author[0].name
+        else
+          @book.author = @book_hash.authors.author.name
+        end
       else
         @book.author = @book_hash.author
       end
