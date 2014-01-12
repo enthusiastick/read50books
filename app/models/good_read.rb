@@ -16,8 +16,4 @@ class GoodRead
     @hash['author']
   end
 
-  def img_url
-    @hash['image_url']
-  end
-
 end

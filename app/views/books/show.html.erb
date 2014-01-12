@@ -1,8 +1,17 @@
 <%- if user_signed_in? -%>
 
-  <h1><%= @book.title %></h1>
-  <h3>by <%= @book.author %></h3>
-  <h5>Completed On: <%= @book.date_completed.to_date %></h5>
+  <div class="row">
+    <div class="small-2 columns">
+      <img src="<%= @book_hash.image_url %>">
+      <span class="secondary label">via <%= link_to 'Goodreads', 'http://www.goodreads.com' %></span>
+    </div>
+    <div class="small-10 columns">
+      <h1><%= @book.title %></h1>
+      <h3>by <%= @book.author %></h3>
+      <h5>Completed On: <%= @book.date_completed.to_date %></h5>
+    </div>
+  </div>
+
   <p><%= button_to 'Back To Your List', user_path(current_user), method: :get, class: "button" %></p>
 
 <%- else -%>

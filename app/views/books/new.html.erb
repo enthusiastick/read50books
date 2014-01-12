@@ -1,9 +1,8 @@
 <%- if user_signed_in? -%>
 
-  <p>Search results provided by <%= link_to 'Goodreads', 'http://www.goodreads.com' %>.</p>
-
   <%= simple_form_for [current_user, @book] do |f| %>
-    <%= f.input :goodreads_id, collection: @results_collection, as: :radio_buttons %>
+    <%= f.input :goodreads_id, collection: @results_collection, label: 'Select Book' %>
+    <p>Search results provided by <%= link_to 'Goodreads', 'http://www.goodreads.com' %>.</p>
     <div>
       <%= f.label 'Date Completed' %>
       <%= f.date_select :date_completed %>

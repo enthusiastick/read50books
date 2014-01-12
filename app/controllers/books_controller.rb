@@ -40,6 +40,9 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @search = BookSearch.new('')
+    @book_hash = @search.id(@book.goodreads_id)
+    # binding.pry
   end
 
   protected
