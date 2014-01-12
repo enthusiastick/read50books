@@ -7,7 +7,7 @@ class BookSearch
   def perform
     @results = Array.new
     raw = client.search_books(@search_string).results
-      unless raw.start_with?("\n")
+      unless raw == nil || raw.start_with?("\n")
         raw.work.each do |result|
           @results << GoodRead.new(result)
         end

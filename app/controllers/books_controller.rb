@@ -38,8 +38,7 @@ class BooksController < ApplicationController
     search = BookSearch.new(params[:q])
     @results_collection = search.perform
     if @results_collection == []
-      flash.now['alert-box alert'] = 'No results returned.'
-      # redirect_to user_path(@user)
+      flash.now['alert-box warning'] = 'No results returned. Please enter information manually.'
     end
       @book = Book.new
   end
