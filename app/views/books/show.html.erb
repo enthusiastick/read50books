@@ -11,8 +11,8 @@
   <%- else -%>
     <div class="row">
       <div class="small-2 columns">
-        <img src="<%= @book_hash.image_url %>">
-        <span class="secondary label">via <%= link_to 'Goodreads', 'http://www.goodreads.com' %></span>
+        <%= link_to image_tag(@book_hash.image_url), @book_hash.link %>
+        <span class="secondary label">via <%= link_to 'Goodreads', @book_hash.link %></span>
       </div>
       <div class="small-10 columns">
         <h1><%= @book.title %></h1>

@@ -16,4 +16,8 @@ class GoodRead
     @hash['author']
   end
 
+  def link
+    @hash['link']
+  end
+
 end
