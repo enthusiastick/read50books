@@ -12,7 +12,12 @@
     </div>
   </div>
 
-  <p><%= button_to 'Back To Your List', user_path(current_user), method: :get, class: "button" %></p>
+  <%- if current_user == @book.user -%>
+    <ul class="inline-list">
+      <li><%= button_to "Remove Book", { action: "destroy", id: @book.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "button small" %></li>
+      <li><%= button_to 'Back To Your List', user_path(current_user), method: :get, class: "button small" %></li>
+    </ul>
+  <%- end -%>
 
 <%- else -%>
 

@@ -27,6 +27,11 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroy
+    Book.find(params[:id]).destroy
+    redirect_to user_path(@user)
+  end
+
   def new
     search = BookSearch.new(params[:q])
     @results_collection = search.perform
