@@ -12,8 +12,8 @@
     <% end %>
   <%- else -%>
     <%= simple_form_for [current_user, @book] do |f| %>
-      <%= f.input :goodreads_id, collection: @results_collection, label: 'Select Book' %>
-      <p>Search results provided by <%= link_to 'Goodreads', 'http://www.goodreads.com' %>. Don't see the book you're looking for? <%= link_to 'Click Here', new_user_book_path(@user, @book) %></p>
+      <%= f.input :goodreads_id, collection: @results_collection, label: 'Select Book', include_blank: false %>
+      <p>Search results provided by <%= link_to 'Goodreads', 'http://www.goodreads.com' %>. Can't find the book you're looking for? <%= link_to 'Click Here', new_user_book_path(@user, @book) %></p>
       <div>
         <%= f.label 'Date Completed' %>
         <%= f.date_select :date_completed %>
