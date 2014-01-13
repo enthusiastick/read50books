@@ -1,3 +1,8 @@
+<ul class="inline-list">
+  <li>Share this book list on Facebook:</li>
+  <li><%= social_share_button_tag(@user.username, url: @facebook_share_url) %></li>
+</ul>
+
 <%- unless @books_by_year == nil -%>
   <%- @books_by_year.each do |year, bookhash| -%>
     <h5><%= year %></h5>
@@ -12,8 +17,6 @@
     </table>
   <%- end -%>
 <%- end -%>
-
-<%= social_share_button_tag(@user.username, url: @facebook_share_url) %>
 
 <%- if user_signed_in? -%>
   <%- if current_user == User.find(params[:id]) -%>

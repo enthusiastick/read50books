@@ -4,7 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Read 50 Books" %></title>
+    <title><%= content_for?(:title) ? yield(:title) :
+
+      if user_signed_in?
+        if @user == nil
+          current_user.username + " | Read 50 Books"
+        else
+          @user.username + " | Read 50 Books"
+        end
+      else
+        "Read 50 Books"
+       end -%></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
