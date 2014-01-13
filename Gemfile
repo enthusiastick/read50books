@@ -34,6 +34,7 @@ gem 'devise'
 gem 'mail_form'
 gem 'foundation-rails'
 gem 'goodreads'
+gem 'social-share-button'
 
 group :test, :development do
   gem 'rspec-rails'

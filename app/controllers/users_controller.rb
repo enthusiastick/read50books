@@ -14,6 +14,7 @@ class UsersController < ApplicationController
         end
       end
     end
+    @facebook_share_url = 'http://www.read50books.com' + user_path(@user)
   end
 
 end
