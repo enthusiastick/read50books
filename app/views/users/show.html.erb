@@ -1,16 +1,16 @@
 <%- unless @books_by_year == nil -%>
-  <table width=100%>
-    <tbody>
-      <%- @books_by_year.each do |year, bookhash| -%>
-        <th><%= year %></th>
-        <%- counter = 0 -%>
+  <%- @books_by_year.each do |year, bookhash| -%>
+    <h5><%= year %></h5>
+    <%- counter = 0 -%>
+    <table width=100%>
+      <tbody>
         <%- bookhash.each do |book| -%>
-          <%- counter +=1 -%>
+          <%- counter += 1 -%>
           <tr><td><%= counter %></td><td><%= link_to book.title, user_book_path(@user, book) %> by <%= book.author %></td></tr>
         <%- end -%>
-      <%- end -%>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  <%- end -%>
 <%- end -%>
 
 <%- if user_signed_in? -%>
