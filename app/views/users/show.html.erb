@@ -1,52 +1,54 @@
-<ul class="inline-list">
-  <li>Share this book list on Facebook:</li>
-  <li><%= social_share_button_tag(@user.username, url: @facebook_share_url) %></li>
-</ul>
+<div class="small-7 small-offset-3 columns">
+  <ul class="inline-list">
+    <li>Share this book list on Facebook:</li>
+    <li><%= social_share_button_tag(@user.username, url: @facebook_share_url) %></li>
+  </ul>
 
-<dl class="tabs" data-tab>
-  <% @books_by_year.each do |year, bookarray| %>
-    <dd class=
-      <% if year == @books_by_year.keys.last %>
-        "active"
-      <% else %>
-        nil
-      <% end %>
-      ><%= link_to year, "#list-#{year}" %>
-    </dd>
-  <% end %>
-</dl>
-
-<div class="tabs-content">
-
-  <% @books_by_year.each do |year, bookarray| %>
-    <div class=
-      <% if year == @books_by_year.keys.last %>
-        "content active"
-      <% else %>
-        "content"
-      <% end %>
-      id="list-<%= year %>">
-      <%- counter = 0 -%>
-      <table width=100%>
-        <tbody>
-          <%- bookarray.each do |book| -%>
-            <%- counter += 1 -%>
-            <tr><td><%= counter %></td><td><%= link_to book.title, user_book_path(@user, book) %> by <%= book.author %></td></tr>
-          <%- end -%>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
-</div>
-
-<%- if user_signed_in? -%>
-  <%- if current_user == User.find(params[:id]) -%>
-
-    <%= form_tag(new_user_book_path(current_user), method: "get") do %>
-      <%= label_tag(:q, "Title:") %>
-      <%= text_field_tag(:q) %>
-      <%= submit_tag "Search", class: "button" %>
+  <dl class="tabs" data-tab>
+    <% @books_by_year.each do |year, bookarray| %>
+      <dd class=
+        <% if year == @books_by_year.keys.last %>
+          "active"
+        <% else %>
+          nil
+        <% end %>
+        ><%= link_to year, "#list-#{year}" %>
+      </dd>
     <% end %>
+  </dl>
 
+  <div class="tabs-content">
+
+    <% @books_by_year.each do |year, bookarray| %>
+      <div class=
+        <% if year == @books_by_year.keys.last %>
+          "content active"
+        <% else %>
+          "content"
+        <% end %>
+        id="list-<%= year %>">
+        <%- counter = 0 -%>
+        <table width=100%>
+          <tbody>
+            <%- bookarray.each do |book| -%>
+              <%- counter += 1 -%>
+              <tr><td><%= counter %></td><td><%= link_to book.title, user_book_path(@user, book) %> by <%= book.author %></td></tr>
+            <%- end -%>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+
+  <%- if user_signed_in? -%>
+    <%- if current_user == User.find(params[:id]) -%>
+
+      <%= form_tag(new_user_book_path(current_user), method: "get") do %>
+        <%= label_tag(:q, "Title:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag "Search", class: "button" %>
+      <% end %>
+
+    <%- end -%>
   <%- end -%>
-<%- end -%>
+</div>
