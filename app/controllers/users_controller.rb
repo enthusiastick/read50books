@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   def show
     @book = Book.new
     @user = User.find(params[:id])
+    @gravatar_url = Gravatar.new(@user.email).image_url
     unless @user.books == nil
       @books = @user.books.order(:date_completed)
       @books_by_year = Hash.new

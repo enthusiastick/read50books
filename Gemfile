@@ -35,7 +35,7 @@ gem 'mail_form'
 gem 'foundation-rails'
 gem 'goodreads'
 gem 'social-share-button'
-gem 'newrelic_rpm'
+gem 'gravatar-ultimate'
 
 group :test, :development do
   gem 'rspec-rails'

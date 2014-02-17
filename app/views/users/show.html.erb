@@ -1,4 +1,9 @@
-<div class="small-7 small-offset-3 columns">
+<div class="small-2 small-offset-1 columns">
+  <div><%= image_tag @gravatar_url, class: "th" %></div>
+  <span class="label"><%= @user.username %></span>
+  <p><strong>Joined On:</strong><br /><%= @user.created_at.strftime("%F") %></p>
+</div>
+<div class="small-6 columns">
   <ul class="inline-list">
     <li>Share this book list on Facebook:</li>
     <li><%= social_share_button_tag(@user.username, url: @facebook_share_url) %></li>
