@@ -27,6 +27,11 @@ class BooksController < ApplicationController
     if @book.save
       flash['alert-box success'] = "Nice work!"
       redirect_to user_book_path(@user, @book)
+      if @user.books.size == 1
+        flash['alert-box success'] = "Congratulations! You just read your first book. You get a badge!"
+      elsif @user.books.size == 5
+        flash['alert-box success'] = "Congratulations! You just read your fifth book. You get a badge!"
+      end
     else
       flash.now['alert-box alert'] = "Error! Please check your input and retry."
       render :new

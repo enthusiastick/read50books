@@ -36,6 +36,7 @@ gem 'foundation-rails'
 gem 'goodreads'
 gem 'social-share-button'
 gem 'gravatar-ultimate'
+gem 'foundation-icons-sass-rails'
 
 group :test, :development do
   gem 'rspec-rails'

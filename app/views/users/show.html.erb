@@ -2,6 +2,13 @@
   <div><%= image_tag @gravatar_url, class: "th" %></div>
   <span class="label"><%= @user.username %></span>
   <p><strong>Joined On:</strong><br /><%= @user.created_at.strftime("%F") %></p>
+  <%- if @user.books.size >= 1 -%>
+    <h3>Badges:</h3>
+    <h5><i class="fi-book"></i> 1 book</h5>
+    <%- if @user.books.size >= 5 -%>
+      <h5><i class="fi-star"></i> 5 books</h5>
+      <%- end -%>
+  <%- end -%>
 </div>
 <div class="small-6 columns">
   <ul class="inline-list">

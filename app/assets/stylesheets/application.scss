@@ -17,7 +17,8 @@
 
 
 
-@import "foundation/components/alert-boxes";
+@import 'foundation/components/alert-boxes';
+@import 'foundation-icons';
 
 .notice {
   @include alert;
