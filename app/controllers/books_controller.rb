@@ -27,11 +27,7 @@ class BooksController < ApplicationController
     if @book.save
       flash['alert-box success'] = "Nice work!"
       redirect_to user_book_path(@user, @book)
-      if @user.books.size == 1
-        flash['alert-box success'] = "Congratulations! You just read your first book. You get a badge!"
-      elsif @user.books.size == 5
-        flash['alert-box success'] = "Congratulations! You just read your fifth book. You get a badge!"
-      end
+      award_badge(@user)
     else
       flash.now['alert-box alert'] = "Error! Please check your input and retry."
       render :new
@@ -61,6 +57,25 @@ class BooksController < ApplicationController
   end
 
   protected
+
+  def award_badge(user)
+    unless user.books == nil
+      books = user.books.order(:date_completed)
+      books_by_year = Hash.new
+      books.each do |book|
+        if books_by_year.has_key?(book.year)
+          books_by_year[book.year] << book
+        else
+          books_by_year[book.year] = [book]
+        end
+      end
+    end
+    if books_by_year.values.last.size == 1
+      flash['alert-box success'] = "Congratulations! You just read your first book of #{books_by_year.keys.last}. You get a badge!"
+    elsif books_by_year.values.last.size == 5
+      flash['alert-box success'] = "Congratulations! You just read your fifth book of #{books_by_year.keys.last}. You get a badge!"
+    end
+  end
 
   def book_params
     params.require(:book).permit(:author, :title, :date_completed, :user_id, :goodreads_id)
