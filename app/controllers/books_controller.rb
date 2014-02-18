@@ -73,7 +73,13 @@ class BooksController < ApplicationController
     if books_by_year.values.last.size == 1
       flash['alert-box success'] = "Congratulations! You just read your first book of #{books_by_year.keys.last}. You get a badge!"
     elsif books_by_year.values.last.size == 5
-      flash['alert-box success'] = "Congratulations! You just read your fifth book of #{books_by_year.keys.last}. You get a badge!"
+      flash['alert-box success'] = "Congratulations! You read five books in #{books_by_year.keys.last}. You get a badge!"
+    elsif books_by_year.values.last.size == 10
+      flash['alert-box success'] = "Congratulations! You read ten books in #{books_by_year.keys.last}. You get a badge!"
+    elsif books_by_year.values.last.size == 25
+      flash['alert-box success'] = "Congratulations!!! You read twenty-five books in #{books_by_year.keys.last}. Halfway there! You get a badge!"
+    elsif books_by_year.values.last.size == 25
+      flash['alert-box success'] = "CONGRATULATIONS!!! You read fifty books in #{books_by_year.keys.last}! Unbelievable!"
     end
   end
 

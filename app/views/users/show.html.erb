@@ -1,7 +1,6 @@
 <div class="small-2 small-offset-1 columns">
   <div><%= image_tag @gravatar_url, class: "th" %></div>
   <span class="label"><%= @user.username %></span>
-  <p><strong>Joined On:</strong><br /><%= @user.created_at.strftime("%F") %></p>
 
   <%- unless @books_by_year.values.last == nil -%>
     <%- if @books_by_year.values.last.size >= 1 -%>
@@ -9,6 +8,15 @@
       <h5><i class="fi-book"></i> 1 book</h5>
       <%- if @books_by_year.values.last.size >= 5 -%>
         <h5><i class="fi-star"></i> 5 books</h5>
+        <%- if @books_by_year.values.last.size >= 10 -%>
+          <h5><i class="fi-sheriff-badge"></i> 10 books</h5>
+          <%- if @books_by_year.values.last.size >= 25 -%>
+            <h5><i class="fi-trophy"></i> 25 books</h5>
+            <%- if @books_by_year.values.last.size >= 50 -%>
+              <h5><i class="fi-crown"></i> 50 books</h5>
+            <%- end -%>
+          <%- end -%>
+        <%- end -%>
       <%- end -%>
     <%- end -%>
   <%- end -%>
