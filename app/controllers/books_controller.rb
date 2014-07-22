@@ -56,6 +56,17 @@ class BooksController < ApplicationController
     end
   end
 
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(update_params)
+      flash['alert-box success'] = "Book notes updated."
+      redirect_to user_path(@user)
+    else
+      flash.now['alert-box warning'] = 'Error. Please check your input and retry.'
+      render :show
+    end
+  end
+
   protected
 
   def award_badge(user)
@@ -85,6 +96,10 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:author, :title, :date_completed, :user_id, :goodreads_id)
+  end
+
+  def update_params
+    params.require(:book).permit(:brief, :note)
   end
 
 end

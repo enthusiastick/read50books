@@ -55,7 +55,13 @@
           <tbody>
             <%- bookarray.each do |book| -%>
               <%- counter += 1 -%>
-              <tr><td><%= counter %></td><td><%= link_to book.title, user_book_path(@user, book) %> by <%= book.author %></td></tr>
+              <tr><td><%= counter %></td><td><%= link_to book.title, user_book_path(@user, book) %> by <%= book.author %>
+                  <%- if book.brief == nil %>
+                    </td>
+                  <%- else %>
+                    <br /><em>&nbsp;&nbsp;&nbsp;<%= book.brief %></em></td>
+                  <%- end %>
+                </tr>
             <%- end -%>
           </tbody>
         </table>
