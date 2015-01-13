@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(update_params)
+    if @user.update!(update_params)
       flash['alert-box success'] = "About #{@user.username} updated."
       redirect_to user_path(@user)
     else
