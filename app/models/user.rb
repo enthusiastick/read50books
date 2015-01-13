@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_format_of :username, without: /\A\d/
   validates_uniqueness_of :username
 
-  has_many :books
+  has_many :books, dependent: :destroy
 
   def self.find(input)
     input.to_i == 0 ? find_by_username(input) : super
