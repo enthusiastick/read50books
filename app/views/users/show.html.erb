@@ -26,6 +26,23 @@
     <li>Share this book list on Facebook:</li>
     <li><%= social_share_button_tag(@user.username, url: @facebook_share_url) %></li>
   </ul>
+  <%- if user_signed_in? -%>
+    <%- if current_user == User.find(params[:id]) -%>
+      <%= simple_form_for @user do |f| %>
+        <%= f.input :about, label: false, placeholder: "About #{@user.username}" %>
+        <%= f.button :submit, "Update 'About #{@user.username}'" %>
+      <% end %>
+    <%- end -%>
+  <%- end -%>
+  <%- unless @user.about.nil? -%>
+    <%- unless @user.about.empty? -%>
+      <div class="panel">
+        <p>
+          <%= @user.about %>
+        </p>
+      </div>
+    <%- end -%>
+  <%- end -%>
 
   <dl class="tabs" data-tab>
     <% @books_by_year.each do |year, bookarray| %>

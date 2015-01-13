@@ -39,13 +39,13 @@
           <li class="divider"></li>
           <% if user_signed_in? %>
             <li>
-              <%= link_to 'Account settings', edit_user_registration_path %>
+              <%= link_to 'Account Settings', edit_user_registration_path %>
             </li>
             <li class="divider"></li>
           <% end %>
           <li>
             <% if user_signed_in? %>
-              <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
             <% else %>
               <%= link_to 'Sign In', new_user_session_path %>
             <% end %>
