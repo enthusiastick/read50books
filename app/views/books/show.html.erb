@@ -25,8 +25,8 @@
 
     <%- if current_user == @book.user -%>
       <%= simple_form_for [current_user, @book] do |f| %>
-        <%= f.input :brief %>
-        <%= f.input :note %>
+        <%= f.input :brief, placeholder: 'Visible to everyone' %>
+        <%= f.input :note, placeholder: 'Visible only to you' %>
       <ul class="inline-list">
         <li><%= f.button :submit, class: "button small" %><% end %></li>
         <li><%= button_to "Remove Book", { action: "destroy", id: @book.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "button small" %></li>
