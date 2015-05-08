@@ -1,0 +1,18 @@
+.row
+  .small-11.medium-10.small-centered.columns
+    -if user_signed_in?
+      -if @results_collection == []
+        =simple_form_for [current_user, @book] do |f|
+          =f.input :title
+          =f.input :author
+          =f.label 'Date Completed'
+          =f.date_select :date_completed
+          =f.button :submit, 'Add Book'
+      - else
+        =simple_form_for [current_user, @book] do |f|
+          =f.input :goodreads_id, collection: @results_collection, label: 'Select Book', include_blank: false
+          %p
+            Search results provided by #{link_to 'Goodreads', 'http://www.goodreads.com'}. Can't find the book you're looking for? #{link_to 'Click Here', new_user_book_path(@user, @book)}
+          =f.label 'Date Completed'
+          =f.date_select :date_completed
+          =f.button :submit, 'Add Book'

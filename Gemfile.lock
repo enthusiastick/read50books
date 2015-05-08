@@ -254,6 +254,7 @@ DEPENDENCIES
   foundation-rails
   goodreads
   gravatar-ultimate
+  haml
   jbuilder (~> 1.2)
   jquery-rails
   launchy

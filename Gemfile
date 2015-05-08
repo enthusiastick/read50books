@@ -29,14 +29,15 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'simple_form'
 gem 'devise'
-gem 'mail_form'
+gem 'foundation-icons-sass-rails'
 gem 'foundation-rails'
 gem 'goodreads'
-gem 'social-share-button'
 gem 'gravatar-ultimate'
-gem 'foundation-icons-sass-rails'
+gem 'haml'
+gem 'mail_form'
+gem 'simple_form'
+gem 'social-share-button'
 
 group :test, :development do
   gem 'rspec-rails'

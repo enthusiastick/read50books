@@ -1,0 +1,40 @@
+.row
+  .small-11.medium-8.small-centered.columns
+    -if user_signed_in?
+      -if @book_hash == nil
+        .row
+          .small-12.columns
+            %h1
+              #{@book.title}
+            %h3
+              by #{@book.author}
+            %h5
+              Completed On: #{@book.date_completed.to_date}
+      -else
+        .row
+          .small-2.columns
+            =link_to image_tag(@book_hash.image_url), @book_hash.link
+            %span.secondary.label
+              via #{link_to 'Goodreads', @book_hash.link}
+          .small-10.columns
+            %h1
+              #{@book.title}
+            %h3
+              by #{@book.author}
+            %h5
+              Completed On: #{@book.date_completed.to_date}
+      -if current_user == @book.user
+        =simple_form_for [current_user, @book] do |f|
+          =f.input :brief, placeholder: 'Visible to everyone'
+          =f.input :note, placeholder: 'Visible only to you'
+          %ul.inline-list
+            %li
+              =f.button :submit, class: "button small"
+            %li
+              =button_to "Remove Book", { action: "destroy", id: @book.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "button small"
+            %li
+              =button_to 'Back To Your List', user_path(current_user), method: :get, class: "button small"
+    -else
+      .panel.radius
+        %h4
+          You must be #{link_to 'signed in', new_user_session_path} to view this content.

@@ -1,0 +1,64 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title
+      =content_for?(:title) ? yield(:title) : "Read 50 Books"
+    =stylesheet_link_tag    "application"
+    =javascript_include_tag "vendor/modernizr"
+    =csrf_meta_tags
+  %body
+    %nav.top-bar{"data-topbar" => ""}
+      %ul.title-area
+        %li.name
+          %h1
+            =link_to 'Read 50 Books', root_path
+        %li.toggle-topbar.menu-icon
+          %a{:href => ""} Menu
+      %section.top-bar-section
+        %ul.right
+          %li.divider
+          -if user_signed_in?
+            %li
+              =link_to 'Account Settings', edit_user_registration_path
+            %li.divider
+          %li
+            -if user_signed_in?
+              =link_to 'Sign Out', destroy_user_session_path, method: :delete
+            -else
+              =link_to 'Sign In', new_user_session_path
+          %li.divider
+          %li
+            -unless user_signed_in?
+              =link_to 'Sign Up', new_user_registration_path
+        %ul.left
+          -if user_signed_in?
+            %li
+              =link_to 'My List', user_path(current_user)
+    .row
+      .small-12.columns
+        %br/
+        -flash.each do |name, msg|
+          -if msg.is_a?(String)
+            .alert-box{:class => name, "data-alert" => "", style: "font-size: large;"}
+              -if name == 'alert'
+                %i.fi-alert  
+                =msg
+              -elsif name == 'success'
+                %i.fi-check  
+                =msg
+              -elsif name == 'warning'
+                %i.fi-minus-circle
+                =msg
+              -else
+                %i.fi-info 
+                =msg
+              %a.close{:href => "#"} ×
+    %br/
+    =yield
+    .row
+      .small-12.columns
+        %p.legalese
+          Read 50 Books is © 2014 Eben Lowe and is available under #{link_to 'the MIT License', 'http://opensource.org/licenses/MIT'}.
+    =javascript_include_tag "application"

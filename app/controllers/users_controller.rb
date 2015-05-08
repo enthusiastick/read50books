@@ -21,10 +21,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update!(update_params)
-      flash['alert-box success'] = "About #{@user.username} updated."
+      flash['success'] = "About #{@user.username} updated."
       redirect_to user_path(@user)
     else
-      flash.now['alert-box warning'] = 'Error. Please check your input and retry.'
+      flash.now['alert'] = 'Error. Please check your input and retry.'
       render :show
     end
   end

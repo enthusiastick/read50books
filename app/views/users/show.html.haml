@@ -1,0 +1,74 @@
+.row
+  .small-12.medium-2.medium-offset-1.columns
+    %div
+      =image_tag @gravatar_url, class: "th"
+    %span.label
+      =@user.username
+    -unless @books_by_year.values.last == nil
+      -if @books_by_year.values.last.size >= 1
+        %h5
+          = @books_by_year.keys.last
+          Badges:
+        %h5
+          %i.fi-book
+          1 book
+        -if @books_by_year.values.last.size >= 5
+          %h5
+            %i.fi-star
+            5 books
+          -if @books_by_year.values.last.size >= 10
+            %h5
+              %i.fi-sheriff-badge
+              10 books
+            -if @books_by_year.values.last.size >= 25
+              %h5
+                %i.fi-trophy
+                25 books
+              -if @books_by_year.values.last.size >= 50
+                %h5
+                  %i.fi-crown
+                  50 books
+  .small-12.medium-6.columns.end
+    %ul.inline-list
+      %li Share this book list on Facebook:
+      %li
+        =social_share_button_tag(@user.username, url: @facebook_share_url)
+    -if user_signed_in?
+      -if current_user == @user
+        =simple_form_for @user do |f|
+          =f.input :about, label: false, placeholder: "About #{@user.username}"
+          =f.button :submit, "Update 'About #{@user.username}'"
+    -unless @user.about.nil?
+      -unless @user.about.empty?
+        .panel
+          %p
+            =@user.about
+    %dl.tabs{"data-tab" => ""}
+      -@books_by_year.each do |year, bookarray|
+        %dd{ class: "#{'active' if year == @books_by_year.keys.last}" }
+          #{link_to year, "#list-#{year}"}
+    .tabs-content
+      -@books_by_year.each do |year, bookarray|
+        .content{ class: "#{'active' if year == @books_by_year.keys.last}", id: "list-#{year}"}
+          -counter = 0
+          %table
+            %tbody
+              -bookarray.each do |book|
+                -counter += 1
+                %tr
+                  %td
+                    =counter
+                  %td
+                    =link_to book.title, user_book_path(@user, book)
+                    by #{book.author}
+                  -if book.brief == nil
+                  -else
+                    %br/
+                    %em
+                      #{book.brief}
+    -if user_signed_in?
+      -if current_user == @user
+        =form_tag(new_user_book_path(current_user), method: "get") do
+          =label_tag(:q, "Title:")
+          =text_field_tag(:q)
+          =submit_tag "Search", class: "button"

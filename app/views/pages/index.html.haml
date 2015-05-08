@@ -1,0 +1,14 @@
+.row
+  .small-11.medium-10.small-centered.columns
+    - if user_signed_in?
+      .panel.radius
+        %p
+          To get started, click the #{link_to 'My List', user_path(current_user)} link above. Enter the title of the book you wish to log, and then select the correct details from the search results. And happy reading!
+    - else
+      .panel.callout.radius
+        %p
+          On January 11th of 2014,
+          %span.hard Read 50 Books
+          was created during "Ship It Saturday", a one-day hack-a-thon organized by #{link_to 'Launch Academy', 'http://www.launchacademy.com'}. Coding started after breakfast and the site was deployed by dinnertime. Although some refactoring has taken place, the bulk of the work was completed in an 8-hour period.
+        %p
+          This site is currently in #{link_to 'open beta', 'http://en.wikipedia.org/wiki/Software_release_life_cycle'}, which means that it isn't finished yet. Everything works so far as I know, but you may encounter errors. I appreciate your patience and understanding as I get things ready for the full release.
