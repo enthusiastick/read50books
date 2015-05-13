@@ -1,3 +1,5 @@
+-content_for :title do
+  #{@book.user.username} &ndash; #{@book.title} &ndash; Read 50 Books
 .row
   .small-11.medium-8.small-centered.columns
     -if user_signed_in?
