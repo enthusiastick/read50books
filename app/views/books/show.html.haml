@@ -33,9 +33,9 @@
             %li
               =f.button :submit, class: "button small"
             %li
-              =button_to "Remove Book", { action: "destroy", id: @book.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "button small"
+              =link_to "Remove Book", { action: "destroy", id: @book.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "button small"
             %li
-              =button_to 'Back To Your List', user_path(current_user), method: :get, class: "button small"
+              =link_to 'Back To Your List', user_path(current_user), method: :get, class: "button small"
     -else
       .panel.radius
         %h4
