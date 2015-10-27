@@ -8,8 +8,12 @@ class BookSearch
     @results = Array.new
     raw = client.search_books(@search_string).results
       unless raw == nil || raw.start_with?("\n")
-        raw.work.each do |result|
-          @results << GoodRead.new(result)
+        if raw.work.first.length > 2
+          raw.work.each do |result|
+            @results << GoodRead.new(result)
+          end
+        else
+          @results << GoodRead.new(raw.work)
         end
       end
     @results
